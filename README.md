@@ -119,3 +119,27 @@ By default, many Debian-based systems disable root SSH access for security reaso
    ```
 
 ---
+
+### **5. Setup and Run valheim server**
+Setup these directories and copy any existing world files to `config/worlds` i.e. the `.db` and `.fwl` files.
+
+```bash
+mkdir -p $HOME/valheim-server/config/worlds $HOME/valheim-server/data
+```
+
+Then run the following command to start the server:
+
+```bash
+docker run -d \
+    --name valheim-server \
+    --cap-add=sys_nice \
+    --stop-timeout 120 \
+    --restart unless-stopped \
+    -p 2456-2457:2456-2457/udp \
+    -v $HOME/valheim-server/config:/config \
+    -v $HOME/valheim-server/data:/opt/valheim \
+    -e SERVER_NAME="My Server" \
+    -e WORLD_NAME="Neotopia" \
+    -e SERVER_PASS="secret" \
+    lloesche/valheim-server
+```
