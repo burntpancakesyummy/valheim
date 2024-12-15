@@ -130,5 +130,5 @@ mkdir -p $HOME/valheim-server/config/worlds $HOME/valheim-server/data
 Then run the following command to start the server:
 
 ```bash
-docker run -d --name valheim-server --cap-add=sys_nice --stop-timeout 120 --restart unless-stopped -p 2456-2457:2456-2457/udp -v $HOME/valheim-server/config:/config -v $HOME/valheim-server/data:/opt/valheim -e SERVER_NAME="My Server" -e WORLD_NAME="Neotopia" -e SERVER_PASS="secret" lloesche/valheim-server
+docker run -d --name valheim-server --cap-add=sys_nice --stop-timeout 120 --restart unless-stopped -p 2456-2457:2456-2457/udp -v $HOME/valheim-server/config:/config -v $HOME/valheim-server/data:/opt/valheim -e SERVER_NAME="My Server" -e WORLD_NAME="Neotopia" -e SERVER_PASS="secret" -e SERVER_PUBLIC="true" -e SERVER_ARGS:"-crossplay" lloesche/valheim-server
 ```
